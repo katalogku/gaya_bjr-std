@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GAYA BANJARAN - Bandung</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:#f8f7f5;color:#111;min-height:100vh}
+header{background:#111;padding:22px 12px 20px;text-align:center;position:sticky;top:0;z-index:100}
+.logo-gb{width:72px;height:72px;border-radius:50%;border:1.5px solid #c9a86a;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;background:#111}
+.logo-gb span{font-family:Georgia,serif;font-size:32px;font-weight:700;color:#c9a86a;letter-spacing:2px}
+header h1{margin:0;font-family:Georgia,serif;font-size:30px;letter-spacing:6px;font-weight:400;color:#fff}
+header h1 span{font-size:11px;display:block;letter-spacing:4px;color:#c9a86a;margin-top:6px;font-family:Arial}
+header p{color:#aaa;font-size:10px;letter-spacing:3px;margin:8px 0 0}
+.search-wrap{padding:14px 12px 8px;background:#fff}
+input{width:100%;padding:12px 16px;border-radius:25px;border:1px solid #e5e5e5;background:#f5f5f5;font-size:13px;outline:none}
+.kategori{display:flex;gap:8px;overflow-x:auto;padding:10px 12px;background:#fff;position:sticky;top:170px;z-index:90}
+.kategori button{white-space:nowrap;border:1px solid #ddd;background:#fff;color:#333;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:12px}
+.kategori button.aktif{background:#111;color:#fff;border-color:#111}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);border:1px solid #f0f0f0}
+.card img{width:100%;height:110px;object-fit:cover;cursor:zoom-in;background:#eee}
+.isi{padding:9px 8px 10px}
+.isi h3{font-size:12px;margin:0;line-height:1.3;color:#111;font-weight:600;min-height:32px}
+.isi p{font-size:10px;color:#999;margin:4px 0}
+.harga{font-weight:800;font-size:13px;color:#111;margin:4px 0 6px}
+.btn{display:block;background:#111;color:#fff;text-align:center;padding:8px;border-radius:8px;text-decoration:none;font-size:11px;font-weight:700}
+.btn.wa{background:#25D366}
+footer{text-align:center;color:#999;font-size:11px;padding:20px;line-height:1.8}
+footer b{color:#111;letter-spacing:2px;font-size:13px;font-family:Georgia,serif}
+.zoom{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:200;align-items:center;justify-content:center;flex-direction:column;padding:14px}
+.zoom.buka{display:flex}
+.zoom img{width:100%;max-width:480px;height:62vh;object-fit:cover;border-radius:16px;background:#fff}
+.zoom h3{color:#fff;margin:14px 0 2px;font-size:19px;text-align:center;font-family:Georgia,serif}
+.zoom .hz{color:#fff;font-weight:800;font-size:18px;margin:4px 0 12px}
+.zoom .row{display:flex;gap:8px;width:100%;max-width:480px}
+.zoom .row a{flex:1;text-align:center;padding:13px;border-radius:12px;font-weight:800;font-size:13px;text-decoration:none;background:#25D366;color:#fff}
+.zoom-tutup{margin-top:12px;background:#333;color:#fff;border:none;padding:10px 24px;border-radius:20px;font-weight:800;cursor:pointer}
+.wa-float{position:fixed;bottom:20px;right:16px;z-index:300;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+</style>
+</head>
+<body>
+<header>
+<div class="logo-gb"><span>GB</span></div>
+<h1>GAYA BANJARAN<span>PASAR BANJARAN • BANDUNG</span></h1><p>• BAJU • JAKET • SEPATU • SANDAL •</p></header>
+<div class="search-wrap"><input id="cari" placeholder="🔎 Cari baju / jaket / sepatu..." onkeyup="f()"></div>
+<div class="kategori">
+<button class="aktif" onclick="filterKategori('semua',this)">Semua</button>
+<button onclick="filterKategori('pria',this)">Pria</button>
+<button onclick="filterKategori('wanita',this)">Wanita</button>
+<button onclick="filterKategori('jaket',this)">Jaket</button>
+<button onclick="filterKategori('anak',this)">Anak</button>
+</div>
+<div class="grid" id="list">
+<div class="card" data-kat="anak"><img src="images1.jpeg" onclick="zoomFoto('images1.jpeg','Setelan anak laki-laki',65000)"><div class="isi"><h3>Setelan anak laki-laki</h3><p>Anak • Kaos</p><div class="harga">Rp 65.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20setelan%20anak%20laki-laki%20Rp%2065.000">Pesan WA</a></div></div>
+<div class="card" data-kat="anak"><img src="images2.jpeg" onclick="zoomFoto('images2.jpeg','Setelan anak laki-laki',59000)"><div class="isi"><h3>Setelan anak laki-laki</h3><p>Anak • Katun</p><div class="harga">Rp 59.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20setelan%20anak%20laki-laki%20Rp%2059.000">Pesan WA</a></div></div>
+<div class="card" data-kat="anak"><img src="images3.jpeg" onclick="zoomFoto('images3.jpeg','Setelan anak perempuan',75000)"><div class="isi"><h3>Setelan anak perempuan</h3><p>Anak • Kaos</p><div class="harga">Rp 75.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Setelan%20anak%20perempuan%20Rp%2075.000">Pesan WA</a></div></div>
+<div class="card" data-kat="anak"><img src="images4.jpeg" onclick="zoomFoto('images4.jpeg','Setelan anak perempuan',85000)"><div class="isi"><h3>Setelan anak perempuan</h3><p>Anak • Katun</p><div class="harga">Rp 85.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20setelan%20anak%20Perempuan%20Rp%2085.000">Pesan WA</a></div></div>
+<div class="card" data-kat="wanita"><img src="images5.jpeg" onclick="zoomFoto('images5.jpeg','Setelan remaja wanita',115000)"><div class="isi"><h3>Setelan remaja wanita</h3><p>Wanita • Korea Style</p><div class="harga">Rp 115.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Setelan%20remaja%20wanita%20Rp%20115.000">Pesan WA</a></div></div>
+<div class="card" data-kat="wanita"><img src="images6.jpeg" onclick="zoomFoto('images6.jpeg','Setelan remaja wanita',110000)"><div class="isi"><h3>Setelan remaja wanita</h3><p>Wanita • Dress</p><div class="harga">Rp 110.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Setelan%20remaja%20wanita%20Rp%20110.000">Pesan WA</a></div></div>
+<div class="card" data-kat="wanita"><img src="images7.jpg" onclick="zoomFoto('images7.jpg','Gamis crincle',125000)"><div class="isi"><h3>Gamis crincle</h3><p>Wanita • Gamis</p><div class="harga">Rp 125.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20gamis%20crincle%20Rp%20125.000">Pesan WA</a></div></div>
+<div class="card" data-kat="wanita"><img src="images8.jpeg" onclick="zoomFoto('images8.jpeg','Gamis brokat',130000)"><div class="isi"><h3>Gamis brokat</h3><p>Wanita • Gamis</p><div class="harga">Rp 130.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Gamis%20brokat%20Rp%20130.000">Pesan WA</a></div></div>
+<div class="card" data-kat="anak"><img src="images9.jpg" onclick="zoomFoto('images9.jpg','Sepatu anak dino',55000)"><div class="isi"><h3>Sepatu anak dino</h3><p>Anak • Lucu</p><div class="harga">Rp 55.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Sepatu%20anak%20dino%20Rp%2055.000">Pesan WA</a></div></div>
+<div class="card" data-kat="anak"><img src="images10.webp" onclick="zoomFoto('images10.webp','Sepatu sneakers pink',75000)"><div class="isi"><h3>Sepatu sneakers pink</h3><p>Anak • Nyaman</p><div class="harga">Rp 75.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Sepatu%20sneakers%20pink%20Rp%2075.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images11.jpg" onclick="zoomFoto('images11.jpg','Sandal slide coklat',80000)"><div class="isi"><h3>Sandal slide coklat</h3><p>Pria • Keren</p><div class="harga">Rp 80.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Sandal%20slide%20Coklat%20Rp%2080.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images12.jpeg" onclick="zoomFoto('images12.jpeg','Sepatu sneakers abu',95000)"><div class="isi"><h3>Sepatu sneakers abu</h3><p>Pria • Nyaman</p><div class="harga">Rp 95.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20Sepatu%20sneakers%20abu%20Rp%2095.000">Pesan WA</a></div></div>
+<div class="card" data-kat="wanita"><img src="images13.jpg" onclick="zoomFoto('images13.jpg','Sepatu sneakers putih',100000)"><div class="isi"><h3>Sepatu sneakers putih</h3><p>Wanita • Keren</p><div class="harga">Rp 100.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20Sepatu%20sneakers%20putih%20Rp%20100.000">Pesan WA</a></div></div>
+<div class="card" data-kat="jaket"><img src="images14.jpeg" onclick="zoomFoto('images14.jpeg','Jaket Denim',135000)"><div class="isi"><h3>Jaket Denim</h3><p>Pria • Keren</p><div class="harga">Rp 135.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Jaket%20Denim%20Rp%20135.000">Pesan WA</a></div></div>
+<div class="card" data-kat="jaket"><img src="images15.jpg" onclick="zoomFoto('images15.jpg','Jaket Bomber army',125000)"><div class="isi"><h3>Jaket Bomber army</h3><p>Pria • Keren</p><div class="harga">Rp 125.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20Jaket%20Bomber%20army%20Rp%20125.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images16.jpg" onclick="zoomFoto('images16.jpg','Polo Maroon',65000)"><div class="isi"><h3>Polo Maroon</h3><p>Pria • Nyaman</p><div class="harga">Rp 65.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20polo%20maroon%20Rp%2065.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images17.jpg" onclick="zoomFoto('images17.jpg','Kemeja kotak',95000)"><div class="isi"><h3>Kemeja kotak</h3><p>Pria • Katun</p><div class="harga">Rp 95.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20Kemeja%20kotak%20Rp%2095.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images18.jpeg" onclick="zoomFoto('images18.jpeg','Kemeja panjang',115000)"><div class="isi"><h3>Kemeja panjang</h3><p>Pria • Formal</p><div class="harga">Rp 115.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20kemeja%20panjang%20Rp%20115.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images19.jpg" onclick="zoomFoto('images19.jpg','Celana cargo panjang',125000)"><div class="isi"><h3>Celana cargo panjang</h3><p>Pria • Nyaman</p><div class="harga">Rp 125.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Celana%20cargo%20panjang%20Rp%20125.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images20.jpeg" onclick="zoomFoto('images20.jpeg','Celana tactical blackhawk',135000)"><div class="isi"><h3>Celana tactical blackhawk</h3><p>Pria • Keren</p><div class="harga">Rp 135.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20celana%20tactical%20blackhawk%20Rp%20135.000">Pesan WA</a></div></div>
+<div class="card" data-kat="pria"><img src="images21.jpeg" onclick="zoomFoto('images21.jpeg','Celana cargo loreng',120000)"><div class="isi"><h3>Celana cargo loreng</h3><p>Pria • Keren</p><div class="harga">Rp 120.000</div><a class="btn wa" href="https://wa.me/6283843653291?text=Halo%20admin,%20mau%20pesan%20Celana%20cargo%20loreng%20Rp%20120.000">Pesan WA</a></div></div>
+</div>
+<footer><b>GAYA BANJARAN Store</b><br>Pasar Banjaran - Bandung<br>WA: 0838-4365-3291<br>ORDER VIA WHATSAPP</footer>
+<a class="wa-float" href="https://wa.me/6283843653291?text=Halo%20admin%20GAYA%20BANJARAN,%20mau%20tanya-tanya%20dulu%20boleh?" target="_blank">💬</a>
+<div class="zoom" id="zoomBox"><img id="zoomImg" src=""><h3 id="zoomNama"></h3><div class="hz" id="zoomHarga"></div><div class="row"><a id="zoomWA" href="#" target="_blank">Pesan WA</a></div><button class="zoom-tutup" onclick="tutupZoom()">✕ Tutup</button></div>
+<script>
+function f(){let v=document.getElementById('cari').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none'})}
+function filterKategori(kat,btn){document.querySelectorAll('.kategori button').forEach(b=>b.classList.remove('aktif'));btn.classList.add('aktif');document.querySelectorAll('.card').forEach(c=>{c.style.display=(kat==='semua'||c.dataset.kat===kat)?'block':'none'})}
+function zoomFoto(src,nama,harga){document.getElementById('zoomImg').src=src;document.getElementById('zoomNama').innerText=nama;document.getElementById('zoomHarga').innerText='Rp '+harga.toLocaleString('id-ID');document.getElementById('zoomWA').href='https://wa.me/6283843653291?text=Halo%20min,%20mau%20pesan%20'+encodeURIComponent(nama)+' - Rp '+harga.toLocaleString('id-ID');document.getElementById('zoomBox').classList.add('buka')}
+function tutupZoom(){document.getElementById('zoomBox').classList.remove('buka')}
+</script>
+</body>
+</html>
